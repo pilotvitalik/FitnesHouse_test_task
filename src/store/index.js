@@ -5,6 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    view: 'ListServices',
+    viewListService: 'FilterList',
   },
   mutations: {
   },
