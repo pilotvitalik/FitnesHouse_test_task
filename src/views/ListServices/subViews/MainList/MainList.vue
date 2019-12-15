@@ -1,5 +1,9 @@
 <template>
-  <Card/>
+  <ul>
+    <li class='itemServices' v-for='item in listServices'>
+      <Card :item='item'/>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -9,11 +13,15 @@ export default {
   components: {
     Card,
   },
-  data() {
-    return {};
+  computed: {
+    listServices() {
+      return this.$store.state.commonArray;
+    },
   },
 };
 </script>
 
 <style lang="less">
+@import '../../../../Vars.less';
+@import './MainList.less';
 </style>

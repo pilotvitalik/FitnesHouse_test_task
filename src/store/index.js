@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     api: 'https://fitnesshouse-ba47f.firebaseio.com/services.json',
     view: 'ListServices',
-    viewListService: 'FilterList',
+    viewListService: 'MainList',
     // cards
     listServices: '',
     listImages: [],
@@ -169,9 +169,9 @@ export default new Vuex.Store({
         }
       }
       if (statusValue.length > 1) {
-        state.view = 'FilterResult';
+        state.viewListService = 'FilterList';
       } else {
-        state.view = 'Main';
+        state.viewListService = 'MainList';
       }
       state.filter = [];
       state.resultCommonArray = [];

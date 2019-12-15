@@ -1,0 +1,139 @@
+.itemCard{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  img{
+      display: block;
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+    .descript{
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      height: 401-216.13px;
+      h5{
+        display: inline-block;
+        width: 90%;
+        height: 59px;
+        margin-left: 19px;
+        color: @titleCardColor;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 59px;
+        letter-spacing: 0.9px;
+      }
+      a{
+        display: inline-block;
+        width: 89%;
+        height: 57.5px;
+        margin-left: 19px;
+        padding-top: 1px;
+        color: @itemColorText;
+        font-size: 13.5px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: -0.11px;
+      }
+      form{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        position: relative;
+        margin-top: 29px;
+        margin-left: 19px;
+        width: 270px;
+        height: 25px;
+        button{
+          display: block;
+          position: relative;
+          width: auto;
+          height: 22px;
+          margin-right: 7px;
+          padding-top: 0px;
+          padding-left: 9px;
+          padding-right: 9px;
+          color: @itemColorText;
+          font-size: 9px;
+          font-weight: 400;
+          line-height: 22px;
+          letter-spacing: 0.6px;
+          border-radius: 10px;
+          border: none;
+          background: @itemColor;
+        }
+      }
+    }
+}
+@media(min-width: 641px) and (max-width: 768px){
+  .itemCard{
+    flex-flow: row wrap;
+    width: 100%;
+    height: 100%;
+    img{
+      width: 50%;
+      height: 100%;
+    }
+    .descript{
+      width: 50%;
+      height: 100%;
+      h5{
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+      }
+      a{
+        float: right;
+        width: 90%;
+        text-align: justify;
+        margin-left: 0;
+        padding: 0 10px;
+      }
+      form{
+        justify-content: space-around;
+        margin-left: 0;
+        width: 100%;
+        button{
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+@media(max-width: 640px){
+  .itemCard{
+    .descript{
+      height: auto;
+      padding-bottom: 15px;
+      h5{
+        width: 100%;
+        text-align: center;
+        margin-left: 0;
+      }
+      a{
+        width: 90%;
+        height: auto;
+        text-align: justify;
+        margin-left: 0;
+        padding: 0 10px;
+      }
+      form{
+        justify-content: space-around;
+        margin-top: 15px;
+        margin-left: 0;
+        width: 100%;
+        button{
+          margin: 0;
+        }
+      }
+    }
+  }
+}

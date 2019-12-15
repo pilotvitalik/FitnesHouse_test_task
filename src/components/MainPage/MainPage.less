@@ -1,0 +1,39 @@
+.main{
+  display: block;
+  position: relative;
+  width: 78.5%;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 21px;
+  padding-bottom: 50px;
+  &>ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    height: auto;
+    z-index: 0;
+  }
+}
+@media(min-width: 1025px) and (max-width: 1280px){
+  .main{
+    width: 68%;
+  }
+}
+@media(min-width: 768px) and (max-width: 1024px){
+  .main{
+    width: 728px;
+  }
+}
+@media(min-width: 641px) and (max-width: 768px){
+  .main{
+    width: 605px;
+  }
+}
+@media(max-width: 640px){
+  .main{
+    width:90%;
+  }
+}

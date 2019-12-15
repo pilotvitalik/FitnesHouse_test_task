@@ -1,7 +1,9 @@
 <template>
-  <transition>
-    <component :is='view'></component>
-  </transition>
+  <div class='main' @click="showSubMenu('закрыть фильтр')">
+    <transition>
+      <component :is='view'></component>
+    </transition>
+  </div>
 </template>
 
 <script>
@@ -18,8 +20,15 @@ export default {
       return this.$store.state.view;
     },
   },
+  methods: {
+    showSubMenu(close) {
+      this.$store.dispatch('showSubMenu', close);
+    },
+  },
 };
 </script>
 
 <style lang="less">
+@import '../../Vars.less';
+@import './MainPage.less';
 </style>
