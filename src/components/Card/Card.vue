@@ -1,6 +1,10 @@
 <template>
   <div class='itemCard'>
-    <img :src='item.url'>
+    <router-link class='itemImage' tag='div'
+    :to="{ path: `service/${ item.alias }` }"
+    @click.native='showDescripton(item)'>
+      <img :src='item.url'>
+    </router-link>
     <div class='descript'>
       <h5>
         {{ item.title }}
@@ -20,6 +24,11 @@
 <script>
 export default {
   props: ['item'],
+  methods: {
+    showDescripton(item) {
+      this.$store.dispatch('showDescripton', item);
+    },
+  },
 };
 </script>
 

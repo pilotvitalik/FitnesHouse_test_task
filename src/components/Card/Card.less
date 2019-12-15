@@ -6,14 +6,20 @@
   height: 100%;
   border-radius: 4px;
   overflow: hidden;
-  img{
+  .itemImage{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    img{
       display: block;
       position: relative;
       width: 100%;
       max-width: 100%;
       height: auto;
     }
-    .descript{
+  }
+  .descript{
       display: flex;
       flex-direction: column;
       position: relative;
@@ -71,16 +77,19 @@
           background: @itemColor;
         }
       }
-    }
+  }
 }
 @media(min-width: 641px) and (max-width: 768px){
   .itemCard{
     flex-flow: row wrap;
     width: 100%;
     height: 100%;
-    img{
+    .itemImage{
       width: 50%;
-      height: 100%;
+      img{
+        width: 100%;
+        height: 100%;
+      }
     }
     .descript{
       width: 50%;
