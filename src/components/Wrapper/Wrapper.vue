@@ -1,7 +1,7 @@
 <template>
   <div id='wrapper'>
       <Navbar/>
-      <Sorting/>
+      <Sorting v-if='showListServices'/>
       <router-view></router-view>
   </div>
 </template>
@@ -15,8 +15,10 @@ export default {
     Navbar,
     Sorting,
   },
-  data() {
-    return {};
+  computed: {
+    showListServices() {
+      return this.$store.state.showListServices;
+    },
   },
 };
 </script>

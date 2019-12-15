@@ -1,7 +1,7 @@
 <template>
   <div class='header' @click="showSubMenu('закрыть фильтр')">
     <nav>
-      <router-link tag='h2' to='/'>Fitness House Market</router-link>
+      <router-link tag='h2' to='/' @click.native='backToMain'>Fitness House Market</router-link>
       <div class='box'>
         <span>4</span>
         <span></span>
@@ -19,6 +19,9 @@ export default {
   methods: {
     showSubMenu(close) {
       this.$store.dispatch('showSubMenu', close);
+    },
+    backToMain() {
+      this.$store.dispatch('backToMain');
     },
   },
 };

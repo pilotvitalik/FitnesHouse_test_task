@@ -1,8 +1,11 @@
 <template>
   <ul>
-    <li class='itemServices' v-for='item in listServices'>
+    <router-link class='itemServices'
+    tag='li' v-for='item in listServices' :key='item.title'
+    :to="{ path: `service/${ item.alias }` }"
+    @click.native='showDescripton(item)'>
       <Card :item='item'/>
-    </li>
+    </router-link>
   </ul>
 </template>
 
@@ -16,6 +19,11 @@ export default {
   computed: {
     listServices() {
       return this.$store.state.commonArray;
+    },
+  },
+  methods: {
+    showDescripton(item) {
+      this.$store.dispatch('showDescripton', item);
     },
   },
 };

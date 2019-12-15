@@ -9,6 +9,7 @@ export default new Vuex.Store({
     api: 'https://fitnesshouse-ba47f.firebaseio.com/services.json',
     view: 'ListServices',
     viewListService: 'MainList',
+    showListServices: true,
     // cards
     listServices: '',
     listImages: [],
@@ -25,6 +26,8 @@ export default new Vuex.Store({
     result: [],
     filter: [], // / all include categories
     resultCommonArray: [],
+    // specificCard
+    description: '',
   },
   mutations: {
     // Receive services.json
@@ -32,14 +35,20 @@ export default new Vuex.Store({
       Vue.http.get(state.api).then((response) => {
         state.listServices = response.body;
         state.listServices.forEach((item) => {
+          let integer = String(item.price).slice(-4, 1); // eslint-disable-line
+          item.newPrice = String(item.price).slice(-3); // eslint-disable-line
+          item.integer = `${integer} ${item.newPrice}`; // eslint-disable-line
+          item.order = []; // eslint-disable-line
+          item.order.push(item.integer, 'руб.');
           item.url = ''; // eslint-disable-line
+          item.fullDescription = item.description; // eslint-disable-line
         });
         state.statusDataAPI = response.ok;
         state.lengthListServices = response.body.length;
       }, (response) => { // eslint-disable-line
       });
     },
-    // Receive list of imagesКатегория тренера
+    // Receive list of images
     receiveImg: (state) => {
       storageRef.child('img').listAll().then((response) => {
         if (response.items.length !== 0) {
@@ -190,11 +199,20 @@ export default new Vuex.Store({
         }
       }
     },
-    // show descript card
-    showDescript: (state, payload) => {
-      state.showService = 'ServicePage';
-      state.isShowService = true;
-      state.descriptionCard = payload;
+    // show description of service
+    showDescripton: (state, payload) => {
+      state.view = '';
+      state.description = '';
+      state.view = 'SpecificService';
+      state.showListServices = false;
+      state.description = payload;
+      console.log(state.description); // eslint-disable-line
+    },
+    // back to main page
+    backToMain: (state) => {
+      state.view = 'ListServices';
+      state.showListServices = true;
+      state.description = '';
     },
   },
   actions: {
@@ -248,9 +266,13 @@ export default new Vuex.Store({
     changeSubMenu: ({ commit }, payload) => {
       commit('changeSubMenu', payload);
     },
-    // show card description
-    showDescript: ({ commit }, payload) => {
-      commit('showDescript', payload);
+    // show description of service
+    showDescripton: ({ commit }, payload) => {
+      commit('showDescripton', payload);
+    },
+    // back to main page
+    backToMain: ({ commit }) => {
+      commit('backToMain');
     },
   },
   modules: {
