@@ -17,6 +17,7 @@ export default new Vuex.Store({
     statusDataAPI: '',
     statusImagesAPI: false,
     statusUrlImages: false,
+    statusMergeArray: false,
     lengthListImages: '',
     lengthListServices: '',
     commonArray: '',
@@ -86,6 +87,7 @@ export default new Vuex.Store({
         });
       });
       state.commonArray = state.listServices;
+      state.statusMergeArray = true;
     },
     // create list of categories filter
     createCatFilter: (state) => {
@@ -203,16 +205,32 @@ export default new Vuex.Store({
     showDescripton: (state, payload) => {
       state.view = '';
       state.description = '';
-      state.view = 'SpecificService';
       state.showListServices = false;
+      state.view = 'SpecificService';
       state.description = payload;
-      console.log(state.description); // eslint-disable-line
     },
     // back to main page
     backToMain: (state) => {
       state.view = 'ListServices';
       state.showListServices = true;
       state.description = '';
+    },
+    // initial loading specific service page
+    specificService: (state, payload) => { // eslint-disable-line
+      state.showListServices = false;
+      state.view = 'SpecificService';
+      state.commonArray.forEach((item) => {
+        if (item.alias === payload) {
+          state.description = item;
+        }
+      });
+    },
+    // identify current component while initialLoading
+    currentComponent: (state, payload) => {
+      if (payload !== '/') {
+        state.showListServices = false;
+        state.view = '';
+      }
     },
   },
   actions: {
@@ -273,6 +291,61 @@ export default new Vuex.Store({
     // back to main page
     backToMain: ({ commit }) => {
       commit('backToMain');
+    },
+    // initial loading specific service page
+    specificService: ({ commit, state }, payload) => {
+      commit('receiveImg');
+      commit('receiveData');
+      // repeat function receiveData, if status = false
+      const statusReceiveDataAPI = setTimeout(function request() {
+        if (state.statusDataAPI === true) {
+          clearTimeout(statusReceiveDataAPI);
+          commit('createCatFilter');
+        } else {
+          commit('receiveData');
+          setTimeout(request, 500);
+        }
+      }, 500);
+      // repeat function receiveImg, if status = false
+      const statusReceiveImgAPI = setTimeout(function request() {
+        if (state.lengthListImages === state.lengthListServices) {
+          clearTimeout(statusReceiveImgAPI);
+          state.statusImagesAPI = true;
+        } else {
+          commit('receiveImg');
+          setTimeout(request, 500);
+        }
+      }, 500);
+      // receive url images
+      const statusImagesAPI = setTimeout(function request() {
+        if (state.statusImagesAPI === true) {
+          commit('receiveUrlImg');
+          clearTimeout(statusImagesAPI);
+        } else {
+          setTimeout(request, 500);
+        }
+      }, 500);
+      // merge images and services arr
+      const statusUrlImages = setTimeout(function request() {
+        if (state.statusUrlImages === true) {
+          commit('mergeImgServ');
+          clearTimeout(statusUrlImages);
+        } else {
+          setTimeout(request, 500);
+        }
+      }, 800);
+      const statusMergeArray = setTimeout(function request() {
+        if (state.statusMergeArray === true) {
+          commit('specificService', payload);
+          clearTimeout(statusMergeArray);
+        } else {
+          setTimeout(request, 500);
+        }
+      }, 500);
+    },
+    // identify current component while initialLoading
+    currentComponent: ({ commit }, payload) => {
+      commit('currentComponent', payload);
     },
   },
   modules: {

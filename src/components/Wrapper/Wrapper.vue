@@ -20,6 +20,20 @@ export default {
       return this.$store.state.showListServices;
     },
   },
+  methods: {
+    specificService(id) {
+      this.$store.dispatch('specificService', id);
+    },
+    currentComponent(id) {
+      this.$store.dispatch('currentComponent', id);
+    },
+  },
+  created() {
+    this.currentComponent(this.$route.params.id);
+    if (this.$route.path !== '/') {
+      this.specificService(this.$route.params.id);
+    }
+  },
 };
 </script>
 
