@@ -3,7 +3,9 @@
     <nav>
       <router-link tag='h2' to='/' @click.native='backToMain'>Fitness House Market</router-link>
       <div class='box'>
-        <span>4</span>
+        <keep-alive>
+          <span>{{ counter }}</span>
+        </keep-alive>
         <span></span>
         <p>Корзина</p>
       </div>
@@ -15,6 +17,11 @@
 export default {
   data() {
     return {};
+  },
+  computed: {
+    counter() {
+      return this.$store.state.counter;
+    },
   },
   methods: {
     showSubMenu(close) {

@@ -17,7 +17,7 @@
             {{ price }}
           </p>
         </div>
-        <button>Купить</button>
+        <button @click ='addToCart'>Купить</button>
       </div>
     </div>
   </div>
@@ -28,6 +28,11 @@ export default {
   computed: {
     description() {
       return this.$store.state.description;
+    },
+  },
+  methods: {
+    addToCart() {
+      this.$store.dispatch('addToCart');
     },
   },
 };

@@ -29,6 +29,8 @@ export default new Vuex.Store({
     resultCommonArray: [],
     // specificCard
     description: '',
+    // add to cart
+    counter: 0,
   },
   mutations: {
     // Receive services.json
@@ -230,7 +232,14 @@ export default new Vuex.Store({
       if (payload !== '/') {
         state.showListServices = false;
         state.view = '';
+      } else {
+        state.showListServices = true;
+        state.view = 'ListServices';
       }
+    },
+    // add to cart
+    addToCart: (state) => {
+      state.counter++; // eslint-disable-line
     },
   },
   actions: {
@@ -346,6 +355,10 @@ export default new Vuex.Store({
     // identify current component while initialLoading
     currentComponent: ({ commit }, payload) => {
       commit('currentComponent', payload);
+    },
+    // add to cart
+    addToCart: ({ commit }) => {
+      commit('addToCart');
     },
   },
   modules: {

@@ -29,7 +29,7 @@ export default {
     },
   },
   created() {
-    this.currentComponent(this.$route.params.id);
+    this.currentComponent(this.$route.path);
     if (this.$route.path !== '/') {
       this.specificService(this.$route.params.id);
     }
