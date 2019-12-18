@@ -33,6 +33,12 @@ export default new Vuex.Store({
     counter: 0,
   },
   mutations: {
+    // compeensator scrollbar
+    compensator: () => {
+      const body = document.querySelector('body');
+      body.style.width = window.innerWidth + 'px'; // eslint-disable-line
+      body.style.overflowX = 'hidden';
+    },
     // Receive services.json
     receiveData: (state) => {
       Vue.http.get(state.api).then((response) => {
@@ -139,6 +145,14 @@ export default new Vuex.Store({
           item.isShow = false; // eslint-disable-line
         }
       });
+      /* const subMenu = document.querySelectorAll('.subMenu li');
+      setTimeout(() => {
+        for (let i = 0; i < subMenu.length; i++){ // eslint-disable-line
+          if (i <= subMenu.length - 3) {
+            subMenu[i].style.display = 'none'; // eslint-disable-line
+          }
+        }
+      }, 1000); */
     },
     // change title of items filter
     changeSubMenu: (state, payload) => {
@@ -248,6 +262,7 @@ export default new Vuex.Store({
   },
   actions: {
     initialLoad: ({ commit, state }) => {
+      commit('compensator');
       commit('receiveImg');
       commit('receiveData');
       // repeat function receiveData, if status = false

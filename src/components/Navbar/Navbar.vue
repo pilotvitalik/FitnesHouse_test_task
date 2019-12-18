@@ -1,5 +1,5 @@
 <template>
-  <div class='header' @click="showSubMenu('закрыть фильтр')">
+  <div class='header' ref='header' @click="showSubMenu('закрыть фильтр')">
     <nav>
       <router-link tag='h2' to='/' @click.native='backToMain'>Fitness House Market</router-link>
       <div class='box'>

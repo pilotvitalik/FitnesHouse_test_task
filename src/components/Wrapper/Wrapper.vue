@@ -38,4 +38,7 @@ export default {
 </script>
 
 <style lang="less">
+#wrapper{
+  width: inherit;
+}
 </style>
