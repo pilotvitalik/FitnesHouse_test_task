@@ -14,7 +14,7 @@ export default new Vuex.Store({
     listServices: '',
     listImages: [],
     urlImages: [],
-    statusDataAPI: '',
+    statusDataAPI: false,
     statusImagesAPI: false,
     statusUrlImages: false,
     statusMergeArray: false,
@@ -214,8 +214,12 @@ export default new Vuex.Store({
     // back to main page
     backToMain: (state) => {
       state.view = 'ListServices';
+      state.viewListService = 'MainList';
       state.showListServices = true;
       state.description = '';
+      state.categories.forEach((item) => {
+        item.title = item.value[0]; // eslint-disable-line
+      });
     },
     // initial loading specific service page
     specificService: (state, payload) => { // eslint-disable-line
