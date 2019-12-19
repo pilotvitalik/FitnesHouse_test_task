@@ -3,10 +3,10 @@
     <nav>
       <router-link tag='h2' to='/' @click.native='backToMain'>Fitness House Market</router-link>
       <div class='box'>
-        <keep-alive>
-          <span>{{ counter }}</span>
-        </keep-alive>
-        <span></span>
+        <span>{{ counter }}</span>
+        <span>
+          <i class="fas fa-shopping-cart"></i>
+        </span>
         <p>Корзина</p>
       </div>
     </nav>

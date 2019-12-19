@@ -95,6 +95,9 @@ export default new Vuex.Store({
         });
       });
       state.commonArray = state.listServices;
+      if (state.commonArray === '') {
+        state.commonArray = state.listServices;
+      }
       state.statusMergeArray = true;
     },
     // create list of categories filter
@@ -145,14 +148,6 @@ export default new Vuex.Store({
           item.isShow = false; // eslint-disable-line
         }
       });
-      /* const subMenu = document.querySelectorAll('.subMenu li');
-      setTimeout(() => {
-        for (let i = 0; i < subMenu.length; i++){ // eslint-disable-line
-          if (i <= subMenu.length - 3) {
-            subMenu[i].style.display = 'none'; // eslint-disable-line
-          }
-        }
-      }, 1000); */
     },
     // change title of items filter
     changeSubMenu: (state, payload) => {
