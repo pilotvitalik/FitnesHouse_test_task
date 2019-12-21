@@ -257,7 +257,7 @@ export default new Vuex.Store({
   },
   actions: {
     initialLoad: ({ commit, state }) => {
-      commit('compensator');
+      /* commit('compensator'); */
       commit('receiveImg');
       commit('receiveData');
       // repeat function receiveData, if status = false
