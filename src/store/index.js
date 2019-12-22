@@ -33,7 +33,7 @@ export default new Vuex.Store({
     counter: 0,
   },
   mutations: {
-    // compeensator scrollbar
+    // compensator scrollBar
     compensator: () => {
       const body = document.querySelector('body');
       body.style.width = window.innerWidth + 'px'; // eslint-disable-line
@@ -95,9 +95,6 @@ export default new Vuex.Store({
         });
       });
       state.commonArray = state.listServices;
-      if (state.commonArray === '') {
-        state.commonArray = state.listServices;
-      }
       state.statusMergeArray = true;
     },
     // create list of categories filter
@@ -257,7 +254,6 @@ export default new Vuex.Store({
   },
   actions: {
     initialLoad: ({ commit, state }) => {
-      /* commit('compensator'); */
       commit('receiveImg');
       commit('receiveData');
       // repeat function receiveData, if status = false
@@ -373,6 +369,9 @@ export default new Vuex.Store({
     // add to cart
     addToCart: ({ commit }) => {
       commit('addToCart');
+    },
+    compensator: ({ commit }) => {
+      commit('compensator');
     },
   },
   modules: {

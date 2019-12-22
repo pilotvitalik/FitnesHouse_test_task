@@ -13,9 +13,17 @@ export default {
     initialLoad() {
       this.$store.dispatch('initialLoad');
     },
+    compensator() {
+      this.$store.dispatch('compensator');
+    },
   },
   created() {
     this.initialLoad();
+    this.compensator();
+    window.addEventListener('resize', this.compensator);
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.compensator);
   },
 };
 </script>
